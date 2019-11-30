@@ -1,6 +1,7 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
+import Link from '@material-ui/core/Link';
 import logo from './logo.svg';
 import { GRAPHQL_URI } from './constants';
 import './App.css';
@@ -18,14 +19,14 @@ function App() {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <a
+          <Link
             className="App-link"
             href="https://reactjs.org"
             target="_blank"
             rel="noopener noreferrer"
           >
             Learn React
-          </a>
+          </Link>
         </header>
       </div>
     </ApolloProvider>

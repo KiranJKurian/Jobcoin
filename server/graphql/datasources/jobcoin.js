@@ -26,15 +26,51 @@ class JobcoinAPI extends RESTDataSource {
     balance,
     transactions: this.transactionReducer(transactions),
   })
+
+  transactionResponseReducer = ({ status, error} = {}) => ({
+    success: status === 'OK',
+    status,
+    error,
+  })
   
   async getAddress({ address }) {
-    const response = await this.get(`addresses/${address}`);
+    console.log('making response');
+    let response;
+    try {
+      response = await this.get(`addresses/${address}`);
+    } catch (e) {
+      response = require(`./mock/address/${address}.json`);
+    }
     return this.addressReducer(response, address);
   }
 
   async getAllTransactions() {
-    const response = await this.get('transactions');
+    let response;
+    try {
+      response = await this.get('transactions');
+    } catch (e) {
+      response = require('./mock/transactions.json');
+    }
     return this.transactionReducer(response);
+  }
+
+  async createTransaction({ fromAddress, toAddress, amount }) {
+    const response = await this.post('transactions', { fromAddress, toAddress, amount })
+      .catch((error = {}) => {
+        const {
+          extensions: {
+            response: {
+              status,
+              body = {},
+            } = {},
+          } = {},
+        } = error;
+        if (status === 422) {
+          return body;
+        }
+        throw error;
+      });
+    return this.transactionResponseReducer(response);
   }
 }
 

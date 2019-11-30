@@ -8,4 +8,8 @@ module.exports = {
         transactions: (_, __, { dataSources }) =>
             dataSources.jobcoinAPI.getAllTransactions(),
     },
+    Mutation: {
+        transaction: (_, { fromAddress, toAddress, amount }, { dataSources }) =>
+            dataSources.jobcoinAPI.createTransaction({ fromAddress, toAddress, amount }),
+    },
   };
