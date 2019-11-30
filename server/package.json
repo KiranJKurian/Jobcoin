@@ -1,0 +1,18 @@
+{
+  "name": "jobcoin-server",
+  "version": "1.0.0",
+  "description": "Jobcoin Server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-datasource-rest": "^0.6.9",
+    "apollo-server": "^2.9.12",
+    "graphql": "^14.5.8",
+    "graphql-iso-date": "^3.6.1"
+  }
+}
