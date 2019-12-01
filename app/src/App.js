@@ -1,7 +1,12 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
-import Link from '@material-ui/core/Link';
+import {
+  Card,
+  Link,
+  CardHeader,
+  CardContent,
+} from '@material-ui/core';
 import logo from './logo.svg';
 import { GRAPHQL_URI } from './constants';
 import './App.css';
@@ -21,13 +26,17 @@ function App() {
           </p>
           <Link
             className="App-link"
-            href="https://reactjs.org"
+            href="https://reactjjs.org"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
+            Learn React 3.0
           </Link>
         </header>
+        <Card>
+          <CardHeader title="Hello World!">Hello</CardHeader>
+          <CardContent>World</CardContent>
+        </Card>
       </div>
     </ApolloProvider>
   );
