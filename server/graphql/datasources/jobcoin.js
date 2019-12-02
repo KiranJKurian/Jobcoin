@@ -27,22 +27,12 @@ class JobcoinAPI extends RESTDataSource {
   });
 
   async getAddress({ address }) {
-    let response;
-    try {
-      response = await this.get(`addresses/${address}`);
-    } catch (e) {
-      response = require(`./mock/address/${address}.json`);
-    }
+    const response = await this.get(`addresses/${address}`);
     return this.addressReducer(response, address);
   }
 
   async getAllTransactions() {
-    let response;
-    try {
-      response = await this.get('transactions');
-    } catch (e) {
-      response = require('./mock/transactions.json');
-    }
+    const response = await this.get('transactions');
     return this.transactionReducer(response);
   }
 
