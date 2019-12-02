@@ -1,20 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, CardContent, Grid, CircularProgress } from '@material-ui/core';
-import { useQuery } from '@apollo/react-hooks';
-import getAddressBalanceAndTransactions from '../../graphql/queries/getAddressBalanceAndTransactions';
+import { useAddressBalanceAndTransactions } from '../../graphql/queries/getAddressBalanceAndTransactions';
 import SendForm from '../SendForm';
 import HistoryGraph from '../HistoryGraph';
-import CardHeaderWithBottomBorder from '../../styled-components/CardHeaderWithBottomBorder';
+import CardHeaderWithBorderBottom from '../../styled-components/CardHeaderWithBorderBottom';
 
 const Dashboard = ({ address }) => {
   const {
     loading,
     error,
     data: { address: { balance = 0, transactions = [] } = {} } = {},
-  } = useQuery(getAddressBalanceAndTransactions, {
-    variables: { address },
-  });
+  } = useAddressBalanceAndTransactions(address);
 
   if (error) {
     return <div>Oops, looks like we got an error. Please try again later</div>;
@@ -26,7 +23,7 @@ const Dashboard = ({ address }) => {
         <Grid container direction="column" spacing={2}>
           <Grid item xs={12}>
             <Card>
-              <CardHeaderWithBottomBorder title="Jobcoin Balance" />
+              <CardHeaderWithBorderBottom title="Jobcoin Balance" />
               <CardContent>
                 {loading ? <CircularProgress /> : balance}
               </CardContent>

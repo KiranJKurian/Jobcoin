@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useMutation } from '@apollo/react-hooks';
-import createTransactions from '../../graphql/mutations/createTransactions';
-import getAddressBalanceAndTransactions from '../../graphql/queries/getAddressBalanceAndTransactions';
+import { useCreateTransaction } from '../../graphql/mutations/createTransactions';
 import StretchedButton from '../../styled-components/StretchedButton';
 import StretchedTextField from '../../styled-components/StretchedTextField';
 import CenteredContainer from '../../styled-components/CenteredContainer';
@@ -10,22 +8,7 @@ import CenteredContainer from '../../styled-components/CenteredContainer';
 const SendForm = ({ address }) => {
   const [destination, setDestination] = useState('');
   const [amount, setAmount] = useState('');
-  const [
-    sendData,
-    { data: { transaction: { error, success = false } = {} } = {} } = {},
-  ] = useMutation(createTransactions, {
-    refetchQueries: ({
-      data: { transaction: { error, success } = {} } = {},
-    } = {}) => {
-      if (error) {
-        window.alert(error);
-      }
-
-      return success
-        ? [{ query: getAddressBalanceAndTransactions, variables: { address } }]
-        : [];
-    },
-  });
+  const [sendData] = useCreateTransaction(address);
 
   return (
     <form
