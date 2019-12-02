@@ -1,45 +1,43 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
-import {
-  Card,
-  Link,
-  CardHeader,
-  CardContent,
-} from '@material-ui/core';
-import logo from './logo.svg';
+import { CssBaseline } from '@material-ui/core';
+import { styled } from '@material-ui/core/styles';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { GRAPHQL_URI } from './constants';
-import './App.css';
+import LoginView from './views/LoginView';
+import DashboardView from './views/DashboardView';
 
 const client = new ApolloClient({
   uri: GRAPHQL_URI,
 });
 
-function App() {
-  return (
-    <ApolloProvider client={client}>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <Link
-            className="App-link"
-            href="https://reactjjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React 3.0
-          </Link>
-        </header>
-        <Card>
-          <CardHeader title="Hello World!">Hello</CardHeader>
-          <CardContent>World</CardContent>
-        </Card>
-      </div>
-    </ApolloProvider>
-  );
-}
+const AppContainer = styled('div')(({ theme }) => ({
+  backgroundColor: '#282c34',
+  color: 'white',
+  fontSize: '1em',
+  flexGrow: 1,
+  minHeight: '100vh',
+  padding: theme.spacing(2),
+  textAlign: 'center',
+}));
+
+const App = () => (
+  <ApolloProvider client={client}>
+    <CssBaseline />
+    <AppContainer>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <LoginView />
+          </Route>
+          <Route path="/address/:address">
+            <DashboardView />
+          </Route>
+        </Switch>
+      </Router>
+    </AppContainer>
+  </ApolloProvider>
+);
 
 export default App;
