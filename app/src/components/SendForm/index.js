@@ -1,26 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Container, TextField, Button } from '@material-ui/core';
-import { styled } from '@material-ui/core/styles';
-import { flexbox } from '@material-ui/system';
 import { useMutation } from '@apollo/react-hooks';
 import createTransactions from '../../graphql/mutations/createTransactions';
 import getAddressBalanceAndTransactions from '../../graphql/queries/getAddressBalanceAndTransactions';
-
-const CenteredContainer = styled(Container)({
-  alignItems: 'center',
-  display: flexbox,
-  flexDirection: 'column',
-});
-
-const StretchedTextField = styled(TextField)(({ theme }) => ({
-  marginBottom: theme.spacing(4),
-  width: '100%',
-}));
-
-const StretchedButton = styled(Button)({
-  width: '100%',
-});
+import StretchedButton from '../../styled-components/StretchedButton';
+import StretchedTextField from '../../styled-components/StretchedTextField';
+import CenteredContainer from '../../styled-components/CenteredContainer';
 
 const SendForm = ({ address }) => {
   const [destination, setDestination] = useState('');
@@ -41,8 +26,6 @@ const SendForm = ({ address }) => {
         : [];
     },
   });
-
-  console.log({ success, error });
 
   return (
     <form

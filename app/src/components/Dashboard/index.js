@@ -1,21 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  Grid,
-  styled,
-  CircularProgress,
-} from '@material-ui/core';
+import { Card, CardContent, Grid, CircularProgress } from '@material-ui/core';
 import { useQuery } from '@apollo/react-hooks';
 import getAddressBalanceAndTransactions from '../../graphql/queries/getAddressBalanceAndTransactions';
 import SendForm from '../SendForm';
 import HistoryGraph from '../HistoryGraph';
-
-const CardHeaderWithBorderBottom = styled(CardHeader)({
-  borderBottom: '0.25px solid',
-});
+import CardHeaderWithBottomBorder from '../../styled-components/CardHeaderWithBottomBorder';
 
 const Dashboard = ({ address }) => {
   const {
@@ -36,7 +26,7 @@ const Dashboard = ({ address }) => {
         <Grid container direction="column" spacing={2}>
           <Grid item xs={12}>
             <Card>
-              <CardHeaderWithBorderBottom title="Jobcoin Balance" />
+              <CardHeaderWithBottomBorder title="Jobcoin Balance" />
               <CardContent>
                 {loading ? <CircularProgress /> : balance}
               </CardContent>

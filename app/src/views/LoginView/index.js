@@ -1,22 +1,15 @@
 import React from 'react';
-import { Card, CardHeader, CardContent, Container } from '@material-ui/core';
-import { styled } from '@material-ui/core/styles';
+import { Card, CardContent, Container } from '@material-ui/core';
 import logo from '../../logo.svg';
 import AddressForm from '../../components/AddressForm';
-
-const LargeLogo = styled('img')({
-  height: '40vmin',
-});
-
-const CardHeaderWithBorderBottom = styled(CardHeader)({
-  borderBottom: '0.25px solid',
-});
+import LargeLogo from '../../styled-components/LargeLogo';
+import CardHeaderWithBottomBorder from '../../styled-components/CardHeaderWithBottomBorder';
 
 const LoginView = () => (
   <Container maxWidth="sm">
     <LargeLogo src={logo} alt="logo" />
     <Card>
-      <CardHeaderWithBorderBottom title="Welcome! Sign in With Your Jobcoin Address" />
+      <CardHeaderWithBottomBorder title="Welcome! Sign in With Your Jobcoin Address" />
       <CardContent>
         <AddressForm />
       </CardContent>

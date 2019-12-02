@@ -2,7 +2,6 @@ import React from 'react';
 import {
   AppBar,
   Toolbar,
-  styled,
   Typography,
   IconButton,
   Menu,
@@ -11,16 +10,8 @@ import {
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { useHistory } from 'react-router-dom';
 import logo from '../../logo.svg';
-
-const Logo = styled('img')({
-  height: '40px',
-});
-
-const LogoAndNameWrapper = styled('div')({
-  alignItems: 'center',
-  display: 'inline-flex',
-  flexGrow: 1,
-});
+import Logo from '../../styled-components/Logo';
+import LogoAndNameWrapper from '../../styled-components/LogoAndNameWrapper';
 
 const AppBarWithLogout = () => {
   const { push } = useHistory();

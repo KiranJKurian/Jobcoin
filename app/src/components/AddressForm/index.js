@@ -1,23 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Container, TextField, Button } from '@material-ui/core';
-import { styled } from '@material-ui/core/styles';
-import { flexbox } from '@material-ui/system';
-
-const CenteredContainer = styled(Container)({
-  alignItems: 'center',
-  display: flexbox,
-  flexDirection: 'column',
-});
-
-const StretchedTextField = styled(TextField)(({ theme }) => ({
-  marginBottom: theme.spacing(4),
-  width: '100%',
-}));
-
-const StretchedButton = styled(Button)({
-  width: '100%',
-});
+import CenteredContainer from '../../styled-components/CenteredContainer';
+import StretchedTextField from '../../styled-components/StretchedTextField';
+import StretchedButton from '../../styled-components/StretchedButton';
 
 const AddressForm = () => {
   const { push } = useHistory();
